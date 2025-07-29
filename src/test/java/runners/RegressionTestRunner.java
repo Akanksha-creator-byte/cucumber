@@ -1,14 +1,15 @@
 package runners;
 
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "src/test/resources/features/inventory.feature",
+    features = "src/test/resources/features",
     glue = {"stepdefinitions", "hooks"},
-    tags = "not @sanity",
+    tags = "@regression",
     plugin = {
     		"pretty", 
     		"html:reports/HtmlReport.html",
@@ -16,13 +17,13 @@ import org.junit.runner.RunWith;
     		"rerun:target/failed_scenarios.txt",
     		"summary",
     },
-    //dryRun =true
-    
+    //dryRun =true,
     		dryRun = false,
     monochrome = true,
     stepNotifications = true
     
 )
-public class TestRunner {
-	
+
+public class RegressionTestRunner {
+
 }

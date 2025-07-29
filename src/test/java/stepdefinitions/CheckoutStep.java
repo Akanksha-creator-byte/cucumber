@@ -30,7 +30,7 @@ public class CheckoutStep extends BaseClass {
     @When("User adds a product to the cart")
     public void user_adds_a_product_to_the_cart() {
         ExtentTestManager.getTest().log(Status.INFO, "Adding product to cart");
-        inventoryPage.addBackpackToCart();
+        inventoryPage.addSauceLabsBackpackToCart();
     }
 
     @When("User navigates to cart and proceeds to checkout")
