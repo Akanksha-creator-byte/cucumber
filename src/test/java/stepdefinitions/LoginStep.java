@@ -25,8 +25,10 @@ public class LoginStep extends BaseClass {
     public void user_enters_username_and_password(String username, String password) {
         ExtentTestManager.getTest().log(Status.INFO, "Entering username: " + username);
         ExtentTestManager.getTest().log(Status.INFO, "Entering password: " + password);
-        loginPage.enterUsername(username);
-        loginPage.enterPassword(password);
+		
+		  loginPage.enterUsername(username); loginPage.enterPassword(password);
+		 
+       
     }
 
     @When("User clicks on Login button")
