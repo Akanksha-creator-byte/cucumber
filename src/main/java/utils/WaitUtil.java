@@ -8,10 +8,17 @@ import java.time.Duration;
 
 public class WaitUtil {
 
-    public static void waitForElementVisible(WebDriver driver, WebElement element, int timeoutSeconds) {
-        new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds))
-                .until(ExpectedConditions.visibilityOf(element));
-    }
+	public static void waitForElementVisible(WebDriver driver, WebElement element, int timeoutSeconds) {
+	    try {
+	        new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds))
+	            .until(ExpectedConditions.visibilityOf(element));
+	    } catch (TimeoutException e) {
+	        System.out.println("Timeout: Element not visible - " + element.toString());
+	        throw e;
+	    }
+	}
+
+
 
     public static void waitForElementClickable(WebDriver driver, WebElement element, int timeoutSeconds) {
         new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds))

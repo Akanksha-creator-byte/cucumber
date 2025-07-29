@@ -21,11 +21,26 @@ public class Hooks extends BaseClass {
         extent = ExtentManager.getInstance();
     }
 
+	/*
+	 * @Before public void setup(Scenario scenario) throws IOException {
+	 * launchBrowser(); ExtentTest test = extent.createTest(scenario.getName());
+	 * ExtentTestManager.setTest(test); }
+	 */
+
     @Before
-    public void setup(Scenario scenario) throws IOException {
-        launchBrowser();
-        ExtentTest test = extent.createTest(scenario.getName());
-        ExtentTestManager.setTest(test);
+    public void setup(Scenario scenario) {
+        System.out.println("📌 Scenario started: " + scenario.getName());
+        try {
+            launchBrowser();  // This is most likely failing silently
+            goToLoginPage();
+            System.out.println("✅ Browser launched successfully");
+            ExtentTest test = ExtentManager.getInstance().createTest(scenario.getName());
+            ExtentTestManager.setTest(test);
+        } catch (Exception e) {
+            System.err.println("❌ Browser setup failed: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Browser not launched, aborting scenario: " + scenario.getName(), e);
+        }
     }
 
     @After
