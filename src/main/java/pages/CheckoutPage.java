@@ -31,6 +31,9 @@ public class CheckoutPage {
     @FindBy(id = "finish")
     private WebElement finishButton;
 
+    @FindBy(className="complete-header")
+    WebElement orderConfirmation;
+
     public void fillCheckoutDetails(String fname, String lname, String zip) {
         firstName.sendKeys(fname);
         lastName.sendKeys(lname);
@@ -41,8 +44,16 @@ public class CheckoutPage {
     public boolean validateSummaryDisplayed() {
         return summaryInfo.isDisplayed();
     }
+    
+    public void clickContinue() {
+        continueButton.click();
+    }
 
     public void completeOrder() {
         finishButton.click();
+    }
+    public void verifyOrderConfirmation() {
+        if(!orderConfirmation.isDisplayed())
+            throw new AssertionError("Order confirmation not displayed");
     }
 }

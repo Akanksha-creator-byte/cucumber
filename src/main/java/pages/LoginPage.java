@@ -85,6 +85,10 @@ public class LoginPage {
 		return inventoryTitle.isDisplayed();
 		
 	}
+	  public void verifyErrorMessage() {
+	        if(!errorMessage.isDisplayed())
+	            throw new AssertionError("Error message not displayed for invalid login");
+	    }
 	public boolean isLoginErrorDisplayed() {
 	    try {
 	        WaitUtil.waitForElementVisible(driver, errorMessage, 5);

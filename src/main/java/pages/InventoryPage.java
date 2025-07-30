@@ -1,5 +1,8 @@
 package pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,12 +23,26 @@ public class InventoryPage {
 	@FindBy(css = ".shopping_cart_link")
 	private WebElement cartIcon;
 	
-	
+	 @FindBy(className = "inventory_item")
+	    List<WebElement> products;
 	
 	 public void addBackpackToCart() {
 		 addToCartBackpack.click();
 	 }
-	
+	    public void verifyInventoryPage() {
+	        if(products.size() == 0)
+	            throw new AssertionError("No products displayed, inventory page not loaded");
+	    }
+
+	    public void addProductToCart(String productName) {
+	        for(WebElement product : products) {
+	            if(product.getText().contains(productName)) {
+	                product.findElement(By.tagName("button")).click();
+	                break;
+	            }
+	        }
+	    }
+
 
 public void goToCart() {
     cartIcon.click();
